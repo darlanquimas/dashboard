@@ -2,16 +2,31 @@ import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { User } from "../../types/User";
 import { loginService } from "../../services/api/SignIn";
+import { registerService } from "../../services/api/SignUp";
 
 const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
-  const service = loginService;
+  const login = loginService;
+  const register = registerService;
 
   const signIn = async (email: string, password: string) => {
-    const data = await service.signIn(email, password);
+    const data = await login.signIn(email, password);
     if (data?.token) {
       setUser(data);
       setLoggedUser(data);
+      return true;
+    }
+    return false;
+  };
+
+  const signUp = async (
+    name: string,
+    userName: string,
+    email: string,
+    password: string
+  ) => {
+    const data = await register.signUp(name, userName, email, password);
+    if (data) {
       return true;
     }
     return false;
@@ -35,7 +50,7 @@ const AuthProvider = ({ children }: { children: JSX.Element }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut, isLoggedIn }}>
+    <AuthContext.Provider value={{ user, signUp, signIn, signOut, isLoggedIn }}>
       {children}
     </AuthContext.Provider>
   );

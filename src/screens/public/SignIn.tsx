@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/Auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/Button";
 
 const SignIn = () => {
   const auth = useContext(AuthContext);
@@ -24,7 +25,7 @@ const SignIn = () => {
     alert("Usuário ou sernha inválidos");
   };
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex justify-center  items-center w-full mt-16">
       <form
         className="bg-white p-8 rounded shadow-md max-w-md w-full"
         onSubmit={handleSubmit}
@@ -66,17 +67,17 @@ const SignIn = () => {
         </div>
 
         <div className="flex items-center justify-between">
-          <button
+          <Button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Entrar
-          </button>
+            label={"Entrar"}
+          />
+
           <Link
             to="#"
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
           >
-            Forgot Password?
+            Esqueceu a senha?
           </Link>
         </div>
       </form>

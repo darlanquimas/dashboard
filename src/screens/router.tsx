@@ -1,9 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "./private/Dashboard";
 
-import Register from "./public/Register";
 import PrivateRoute from "./privateRoute";
 import SignIn from "./public/SignIn";
+import SignUp from "./public/SignUp";
 
 const AppRoutes = () => {
   return (
@@ -17,7 +17,7 @@ const AppRoutes = () => {
         }
       />
       <Route path="/login" element={<SignIn />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/register" element={<SignUp />} />
       <Route path="*" element={<Navigate to="/dashboard" />} />
     </Routes>
   );
